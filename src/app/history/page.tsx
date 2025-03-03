@@ -1,76 +1,110 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import Link from 'next/link';
-import { PlantDiagnosis } from '@/lib/types';
-import { formatDate, getConfidenceColor, getConfidencePercentage } from '@/lib/utils';
-import Button from '@/components/ui/Button';
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { Card } from '@/components/ui/card';
+import { HistoryCard } from '@/components/features/history-card';
+import { getDiagnosisHistory } from '@/services/api';
+import { DiagnosisHistory } from '@/types/api';
 
-const HistoryPage = () => {
-    const [history, setHistory] = useState<PlantDiagnosis[]>([]);
+export default function HistoryPage() {
+    const [history, setHistory] = useState<DiagnosisHistory[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        // Load history from localStorage
-        const storedHistory = JSON.parse(localStorage.getItem('plantDiagnosisHistory') || '[]') as PlantDiagnosis[];
-        setHistory(storedHistory);
+        const fetchHistory = async () => {
+            try {
+                setIsLoading(true);
+                const response = await getDiagnosisHistory();
+                setHistory(response.history);
+            } catch (err) {
+                setError('Failed to load diagnosis history. Please try again later.');
+                console.error(err);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        fetchHistory();
     }, []);
 
-    const clearHistory = () => {
-        localStorage.removeItem('plantDiagnosisHistory');
-        setHistory([]);
+    const container = {
+        hidden: { opacity: 0 },
+        show: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.1
+            }
+        }
     };
 
-    if (history.length === 0) {
-        return (
-            <div className="max-w-4xl mx-auto px-4 py-16 text-center">
-                <div className="bg-white rounded-lg shadow-md p-8">
-                    <h1 className="text-2xl font-bold text-gray-900 mb-4">Diagnosis History</h1>
-                    <p className="text-gray-600 mb-6">You haven't diagnosed any plants yet.</p>
-                    <Link href="/upload">
-                        <Button>Diagnose a Plant</Button>
-                    </Link>
-                </div>
-            </div>
-        );
-    }
+    const item = {
+        hidden: { opacity: 0, y: 20 },
+        show: { opacity: 1, y: 0 }
+    };
 
     return (
-        <div className="max-w-6xl mx-auto px-4 py-8">
-            <div className="flex justify-between items-center mb-6">
-                <h1 className="text-2xl font-bold text-gray-900">Diagnosis History</h1>
-                <Button variant="outline" onClick={clearHistory}>Clear History</Button>
-            </div>
+        <div className="page-container py-12">
+            <motion.h1
+                className="section-title text-center"
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+            >
+                Diagnosis History
+            </motion.h1>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {history.map((item) => (
-                    <Link href={`/results/${item.id}`} key={item.id}>
-                        <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow cursor-pointer h-full flex flex-col">
-                            <div className="h-48 overflow-hidden">
-                                <img
-                                    src={item.imageUrl}
-                                    alt={item.prediction.class}
-                                    className="w-full h-full object-cover"
-                                />
-                            </div>
-                            <div className="p-4 flex-grow">
-                                <div className="flex justify-between items-start">
-                                    <h3 className="text-lg font-semibold text-gray-800">
-                                        {item.prediction.class.replace(/_/g, ' ')}
-                                    </h3>
-                                    <span className={`text-sm font-medium px-2 py-1 rounded-full ${getConfidenceColor(item.prediction.confidence)}`}>
-                                        {getConfidencePercentage(item.prediction.confidence)}
-                                    </span>
-                                </div>
-                                <p className="text-sm text-gray-500 mt-2">
-                                    {formatDate(item.timestamp)}
-                                </p>
-                            </div>
-                        </div>
-                    </Link>
-                ))}
-            </div>
+            <motion.p
+                className="text-gray-600 text-center max-w-3xl mx-auto mb-12"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+            >
+                View your past plant diagnoses and revisit treatment recommendations.
+            </motion.p>
+
+            {isLoading ? (
+                <div className="flex justify-center items-center py-20">
+                    <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary-600"></div>
+                </div>
+            ) : error ? (
+                <Card className="p-6 max-w-xl mx-auto bg-red-50 border border-red-200">
+                    <p className="text-red-700">{error}</p>
+                </Card>
+            ) : history.length === 0 ? (
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="text-center py-12"
+                >
+                    <Card className="p-8 max-w-xl mx-auto">
+                        <h2 className="text-xl font-semibold mb-2">No diagnoses yet</h2>
+                        <p className="text-gray-600 mb-6">
+                            You haven't diagnosed any plants yet. Upload a plant image to get started.
+                        </p>
+                        <a
+                            href="/diagnose"
+                            className="inline-block bg-primary-600 text-white px-4 py-2 rounded-md hover:bg-primary-700 transition-colors"
+                        >
+                            Diagnose a Plant
+                        </a>
+                    </Card>
+                </motion.div>
+            ) : (
+                <motion.div
+                    variants={container}
+                    initial="hidden"
+                    animate="show"
+                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+                >
+                    {history.map((item) => (
+                        <motion.div key={item.id}>
+                            <HistoryCard item={item} />
+                        </motion.div>
+                    ))}
+                </motion.div>
+            )}
         </div>
     );
 }
-
-export default HistoryPage

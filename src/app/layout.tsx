@@ -1,29 +1,30 @@
-import NavBar from '@/components/ui/NavBar';
-import './globals.css';
 import type { Metadata } from 'next';
-import Footer from '@/components/ui/Footer';
+import { Inter } from 'next/font/google';
+import { Navbar } from '@/components/ui/navbar';
+import { Footer } from '@/components/ui/footer';
+import '@/styles/globals.css';
+
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-    title: 'Plant Doctor - AI Plant Disease Diagnosis',
-    description: 'Diagnose plant diseases with AI technology. Upload a photo and get instant results.',
+    title: 'Plant Doctor - AI Plant Disease Detection',
+    description: 'Identify and treat plant diseases using AI technology',
 };
 
-const RootLayout = ({
+export default function RootLayout({
     children,
 }: {
     children: React.ReactNode;
-}) => {
+}) {
     return (
         <html lang="en">
-            <body className="min-h-screen flex flex-col bg-gray-50">
-                <NavBar />
-                <main className="flex-grow">
-                    {children}
-                </main>
-                <Footer />
+            <body className={inter.className}>
+                <div className="flex flex-col min-h-screen">
+                    <Navbar />
+                    <main className="flex-grow">{children}</main>
+                    <Footer />
+                </div>
             </body>
         </html>
     );
 }
-
-export default RootLayout

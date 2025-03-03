@@ -1,82 +1,82 @@
 'use client'
 
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { cn } from '@/lib/utils';
+import { motion, AnimatePresence } from 'framer-motion';
+import { HiMenu, HiX } from 'react-icons/hi';
+import Image from 'next/image';
 
-const NavItem = ({ href, children }: { href: string; children: React.ReactNode }) => {
-    const pathname = usePathname();
-    const isActive = pathname === href;
+export const Navbar: React.FC = () => {
+    const [isOpen, setIsOpen] = useState(false);
+
+    const links = [
+        { href: '/', label: 'Home' },
+        { href: '/diagnose', label: 'Diagnose Plant' },
+        { href: '/history', label: 'History' },
+        { href: '/about', label: 'About' },
+    ];
 
     return (
-        <Link
-            href={href}
-            className={cn(
-                'px-3 py-2 rounded-md text-sm font-medium transition-colors',
-                isActive
-                    ? 'bg-primary-100 text-primary-700'
-                    : 'text-gray-700 hover:bg-gray-100'
-            )}
-        >
-            {children}
-        </Link>
-    );
-};
-
-const NavBar = () => {
-    return (
-        <nav className="bg-white shadow-sm">
+        <nav className="bg-white shadow-md">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between h-16">
-                    <div className="flex items-center">
-                        <Link href="/" className="flex-shrink-0 flex items-center">
-                            <img
-                                className="h-8 w-auto"
-                                src="/images/logo.svg"
-                                alt="Plant Doctor"
-                            />
-                            <span className="ml-2 text-xl font-bold text-primary-700">Plant Doctor</span>
-                        </Link>
+                    <div className="flex">
+                        <div className="flex-shrink-0 flex items-center">
+                            <Link href="/" className="text-xl font-bold text-primary-600 flex items-center">
+                                <div className="flex items-center gap-x-2">
+                                    <Image src="/icons/pest.png" alt="Icon" width={30} height={30} />
+                                    Plant Doctor
+                                </div>
+                            </Link>
+                        </div>
+                        <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
+                            {links.map((link) => (
+                                <Link
+                                    key={link.href}
+                                    href={link.href}
+                                    className="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-primary-300"
+                                >
+                                    {link.label}
+                                </Link>
+                            ))}
+                        </div>
                     </div>
-
-                    <div className="hidden sm:ml-6 sm:flex sm:items-center space-x-1">
-                        <NavItem href="/">Home</NavItem>
-                        <NavItem href="/upload">Diagnose</NavItem>
-                        <NavItem href="/history">History</NavItem>
-                        <NavItem href="/about">About</NavItem>
-                    </div>
-
-                    {/* Mobile menu button */}
-                    <div className="flex items-center sm:hidden">
+                    <div className="-mr-2 flex items-center sm:hidden">
                         <button
-                            type="button"
+                            onClick={() => setIsOpen(!isOpen)}
                             className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500"
-                            aria-expanded="false"
                         >
                             <span className="sr-only">Open main menu</span>
-                            {/* Icon when menu is closed */}
-                            <svg
-                                className="block h-6 w-6"
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                                aria-hidden="true"
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M4 6h16M4 12h16M4 18h16"
-                                />
-                            </svg>
+                            {isOpen ? <HiX className="block h-6 w-6" /> : <HiMenu className="block h-6 w-6" />}
                         </button>
                     </div>
                 </div>
             </div>
+
+            <AnimatePresence>
+                {isOpen && (
+                    <motion.div
+                        key="mobile-menu"
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        className="sm:hidden"
+                    >
+                        <div className="pt-2 pb-3 space-y-1">
+                            {links.map((link) => (
+                                <Link
+                                    key={link.href}
+                                    href={link.href}
+                                    className="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-primary-300 hover:text-gray-800"
+                                    onClick={() => setIsOpen(false)}
+                                >
+                                    {link.label}
+                                </Link>
+                            ))}
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </nav>
     );
-}
-
-export default NavBar
+};
