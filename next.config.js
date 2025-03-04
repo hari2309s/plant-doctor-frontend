@@ -3,8 +3,6 @@ const path = require('path');
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  // Hardcode the base path for GitHub Pages
-  basePath: '/plant-doctor-frontend',
   assetPrefix: '/plant-doctor-frontend/',
   images: {
     domains: ["plant-doctor-hxptp783pkkz.deno.dev"],
