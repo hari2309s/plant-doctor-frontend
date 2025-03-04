@@ -1,7 +1,5 @@
 const path = require('path');
 
-const withImages = require('next-images');
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -29,4 +27,4 @@ const nextConfig = {
   }
 };
 
-module.exports = withImages(nextConfig);
+module.exports = nextConfig;
