@@ -20,7 +20,7 @@ export default function HistoryPage() {
                 setHistory(response.history
                     .map(item => ({
                         ...item,
-                        image_url: `${process.env.NEXT_PUBLIC_PLANT_DOCTER_LOCAL_API_BASE_URL}${item.image_url}`
+                        image_url: `${process.env.PLANT_DOCTER_API_BASE_URL}${item.image_url}`
                     })));
             } catch (err) {
                 setError('Failed to load diagnosis history. Please try again later.');
