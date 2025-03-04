@@ -17,8 +17,7 @@ const nextConfig = {
     ],
     unoptimized: true, // Ensure images in public/ load properly
   },
-  basePath: isProd ? "/plant-doctor-hxptp783pkkz.deno.dev" : "",
-  assetPrefix: isProd ? "/plant-doctor-hxptp783pkkz.deno.dev/" : "",
+  trailingSlash: true, // Ensures static files are accessible
   env: {
     PLANT_DOCTER_LOCAL_API_BASE_URL: "http://localhost:8000",
     PLANT_DOCTER_API_BASE_URL: "https://plant-doctor-hxptp783pkkz.deno.dev"

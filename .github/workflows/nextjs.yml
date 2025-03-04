@@ -61,6 +61,12 @@ jobs:
           #
           # You may remove this line if you want to manage the configuration yourself.
           static_site_generator: next
+      - name: Debug Public Folder
+        run: ls -R public
+      - name: Fix Paths for GitHub Pages
+        run: |
+          mv out/plant-doctor-frontend/* out/
+          rm -rf out/plant-doctor-frontend
       - name: Restore cache
         uses: actions/cache@v4
         with:
