@@ -65,11 +65,11 @@ jobs:
         uses: actions/cache@v4
         with:
             path: |
-                node_modules  # Cache node_modules folder as well to avoid reinstalling dependencies
-                .next/cache  # Cache Next.js build cache
+              node_modules
+              .next/cache
             key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
             restore-keys: |
-                ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-
+              ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: TypeScript type checking
