@@ -72,7 +72,7 @@ export default function HistoryPage() {
                 <Card className="p-6 max-w-xl mx-auto bg-red-50 border border-red-200">
                     <p className="text-red-700">{error}</p>
                 </Card>
-            ) : history.length === 0 ? (
+            ) : history?.length === 0 ? (
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}

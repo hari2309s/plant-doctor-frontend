@@ -27,14 +27,14 @@ export const uploadImage = async (
 };
 
 export const getDiagnosisHistory = async (): Promise<HistoryResponse> => {
-  const response = await fetch(`${API_BASE_URL}/history`);
+  const response = await fetch(`${API_BASE_URL}/api/v1/history`);
   return response.json();
 };
 
 export const getSingleDiagnosis = async (
   id: string
 ): Promise<DiagnosisResponse> => {
-  const response = await fetch(`/diagnosis/${id}`);
+  const response = await fetch(`/api/v1/diagnosis/${id}`);
   return response.json();
 };
 
