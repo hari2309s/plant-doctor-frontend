@@ -175,7 +175,7 @@ export default function Home() {
                             <Button
                                 size="lg"
                                 variant="secondary"
-                                className="font-semibold bg-white !text-primary-700 hover:bg-gray-100"
+                                className="font-semibold bg-white !text-primary-700 hover:bg-gray-100 hover:!text-white"
                             >
                                 Get Started Now
                             </Button>
