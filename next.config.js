@@ -3,7 +3,6 @@ const path = require('path');
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  assetPrefix: '/plant-doctor-frontend/',
   images: {
     domains: ["plant-doctor-hxptp783pkkz.deno.dev"],
     remotePatterns: [
