@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { HiMenu, HiX } from 'react-icons/hi';
-import Image from 'next/image';
 
 export const Navbar: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -24,7 +23,7 @@ export const Navbar: React.FC = () => {
                         <div className="flex-shrink-0 flex items-center">
                             <Link href="/" className="text-xl font-bold text-primary-600 flex items-center">
                                 <div className="flex items-center gap-x-2">
-                                    <Image src="/icons/pest.png" alt="Icon" width={30} height={30} />
+                                    <img src="/icons/pest.png" alt="Icon" width={30} height={30} />
                                     Plant Doctor
                                 </div>
                             </Link>
