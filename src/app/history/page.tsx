@@ -17,7 +17,11 @@ export default function HistoryPage() {
             try {
                 setIsLoading(true);
                 const response = await getDiagnosisHistory();
-                setHistory(response.history);
+                setHistory(response.history
+                    .map(item => ({
+                        ...item,
+                        image_url: `${process.env.NEXT_PUBLIC_PLANT_DOCTER_LOCAL_API_BASE_URL}${item.image_url}`
+                    })));
             } catch (err) {
                 setError('Failed to load diagnosis history. Please try again later.');
                 console.error(err);
@@ -98,7 +102,7 @@ export default function HistoryPage() {
                     animate="show"
                     className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
                 >
-                    {history.map((item) => (
+                    {history?.map((item) => (
                         <motion.div key={item.id}>
                             <HistoryCard item={item} />
                         </motion.div>

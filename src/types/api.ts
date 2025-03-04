@@ -27,14 +27,14 @@ export interface DiagnosisResult {
 export interface DiagnosisHistory {
   id: string;
   plant_name: string;
+  disease_name: string;
   image_url: string;
-  diagnosis: PlantDiagnosis[];
-  timestamp: string;
+  predictions: PlantDiagnosis[];
+  created_at: string;
+  additional_info: Record<string, unknown>;
 }
 
 export interface HistoryResponse {
-  success: boolean;
-  message: string;
   history: DiagnosisHistory[];
 }
 

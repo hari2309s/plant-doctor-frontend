@@ -1,6 +1,4 @@
-// src/components/features/history-card.tsx (continued)
 import React from 'react';
-import { motion } from 'framer-motion';
 import { Card } from '@/components/ui/card';
 import { DiagnosisHistory } from '@/types/api';
 import Link from 'next/link';
@@ -10,8 +8,12 @@ interface HistoryCardProps {
 }
 
 export const HistoryCard: React.FC<HistoryCardProps> = ({ item }) => {
-    const mainDiagnosis = item.diagnosis[0]; // Assuming the first diagnosis is the most likely
-    const date = new Date(item.timestamp).toLocaleDateString('en-US', {
+    const mainDiagnosis = {
+        name: item.disease_name,
+        confidence: item.predictions[0].confidence,
+        description: item.predictions[0].description
+    };
+    const date = new Date(item.created_at).toLocaleDateString('en-US', {
         year: 'numeric',
         month: 'short',
         day: 'numeric',
@@ -38,7 +40,7 @@ export const HistoryCard: React.FC<HistoryCardProps> = ({ item }) => {
                         </div>
                         <div className="mb-3">
                             <span className="inline-block bg-primary-100 text-primary-800 text-xs px-2 py-1 rounded-full">
-                                {mainDiagnosis.disease_name}
+                                {mainDiagnosis.name}
                             </span>
                             <div className="w-full bg-gray-200 rounded-full h-1.5 mt-2">
                                 <div
