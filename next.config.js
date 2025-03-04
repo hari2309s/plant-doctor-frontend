@@ -21,7 +21,6 @@ const nextConfig = {
     ],
     unoptimized: true, // Ensure images in public/ load properly
   },
-  trailingSlash: true, // Ensures static files are accessible
   output: 'export', // Ensures Next.js generates a static build
   env: {
     PLANT_DOCTER_LOCAL_API_BASE_URL: "http://localhost:8000",
