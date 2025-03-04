@@ -1,7 +1,9 @@
 const path = require('path');
 
+const withImages = require('next-images')
+
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+const nextConfig = withImages({
   reactStrictMode: true,
   images: {
     domains: ["plant-doctor-hxptp783pkkz.deno.dev"],
@@ -25,6 +27,6 @@ const nextConfig = {
     config.resolve.alias['@'] = path.resolve(__dirname, 'src');
     return config;
   }
-};
+});
 
 module.exports = nextConfig;
