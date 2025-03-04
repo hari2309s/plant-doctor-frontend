@@ -24,7 +24,7 @@ export const Navbar: React.FC = () => {
                         <div className="flex-shrink-0 flex items-center">
                             <Link href="/" className="text-xl font-bold text-primary-600 flex items-center">
                                 <div className="flex items-center gap-x-2">
-                                    <Image src="/icons/pest.png" alt="Icon" width={30} height={30} />
+                                    <Image src="/plant-doctor-frontend/icons/pest.png" alt="Icon" width={30} height={30} />
                                     Plant Doctor
                                 </div>
                             </Link>
