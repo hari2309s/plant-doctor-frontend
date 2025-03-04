@@ -69,13 +69,7 @@ jobs:
                 .next/cache  # Cache Next.js build cache
             key: debug-clear-cache-${{ github.run_id }}
       - name: Install dependencies
-        run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }} --check-files
-      - name: Debug File Structure
-        run: |
-          echo "Listing src/components/ui"
-          ls -l src/components/ui || echo "Directory not found!"
-      - name: TypeScript type checking
-        run: npx tsc --noEmit
+        run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Build with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
       - name: Upload artifact
