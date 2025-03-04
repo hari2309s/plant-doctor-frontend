@@ -1,3 +1,5 @@
+const path = require('path');
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -15,6 +17,11 @@ const nextConfig = {
   env: {
     PLANT_DOCTER_LOCAL_API_BASE_URL: "http://localhost:8000",
     PLANT_DOCTER_API_BASE_URL: "https://plant-doctor-hxptp783pkkz.deno.dev"
+  },
+  webpack(config) {
+    // Adding alias for '@' to point to 'src' directory
+    config.resolve.alias['@'] = path.join(__dirname, 'src');
+    return config;
   }
 };
 
