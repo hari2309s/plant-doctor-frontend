@@ -3,12 +3,9 @@ const path = require('path');
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  // Explicitly set the base path for GitHub Pages
-  basePath: process.env.GITHUB_REPOSITORY ? `/${process.env.GITHUB_REPOSITORY.split('/')[1]}` : '',
-  // Configure asset prefix for GitHub Pages
-  assetPrefix: process.env.GITHUB_REPOSITORY 
-    ? `/${process.env.GITHUB_REPOSITORY.split('/')[1]}/` 
-    : '',
+  // Hardcode the base path for GitHub Pages
+  basePath: '/plant-doctor-frontend',
+  assetPrefix: '/plant-doctor-frontend/',
   images: {
     domains: ["plant-doctor-hxptp783pkkz.deno.dev"],
     remotePatterns: [
