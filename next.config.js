@@ -4,15 +4,7 @@ const path = require('path');
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["plant-doctor-hxptp783pkkz.deno.dev"],
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "plant-doctor-hxptp783pkkz.deno.dev",
-        port: "",
-        pathname: "/**",
-      },
-    ],
+    unoptimized: true, // Ensure images in public/ load properly
   },
   env: {
     PLANT_DOCTER_LOCAL_API_BASE_URL: "http://localhost:8000",
