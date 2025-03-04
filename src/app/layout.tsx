@@ -9,6 +9,7 @@ const inter = Inter({ subsets: ['latin'] });
 export const metadata: Metadata = {
     title: 'Plant Doctor - AI Plant Disease Detection',
     description: 'Identify and treat plant diseases using AI technology',
+    icons: "/icons/favicon.ico",
 };
 
 export default function RootLayout({
