@@ -1,10 +1,14 @@
 const path = require('path');
 
-const isProd = process.env.NODE_ENV === "production";
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  // Explicitly set the base path for GitHub Pages
+  basePath: process.env.GITHUB_REPOSITORY ? `/${process.env.GITHUB_REPOSITORY.split('/')[1]}` : '',
+  // Configure asset prefix for GitHub Pages
+  assetPrefix: process.env.GITHUB_REPOSITORY 
+    ? `/${process.env.GITHUB_REPOSITORY.split('/')[1]}/` 
+    : '',
   images: {
     domains: ["plant-doctor-hxptp783pkkz.deno.dev"],
     remotePatterns: [
