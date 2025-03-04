@@ -22,11 +22,7 @@ const nextConfig = {
     // Adding alias for '@' to point to 'src' directory
     config.resolve.alias['@'] = path.join(__dirname, 'src');
     return config;
-  },
-  typescript: {
-    ignoreDevErrors: false,
-    ignoreBuildErrors: false,
-  },
+  }
 };
 
 module.exports = nextConfig;
