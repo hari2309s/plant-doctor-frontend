@@ -18,7 +18,7 @@ const nextConfig = {
   output: 'export', // Ensures Next.js generates a static build
   env: {
     PLANT_DOCTER_LOCAL_API_BASE_URL: "http://localhost:8000",
-    PLANT_DOCTER_API_BASE_URL: "https://plant-doctor-an5pvn1ra83x.deno.dev"
+    PLANT_DOCTER_API_BASE_URL: "https://plant-doctor-6f5s2eddkj5y.deno.dev"
   },
   webpack(config) {
     // Adding alias for '@' to point to 'src' directory
