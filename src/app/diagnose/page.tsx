@@ -27,6 +27,7 @@ export default function DiagnosePage() {
         }
 
         const result = await diagnose(selectedFile, plantName);
+
         if (result) {
             setDiagnosisResult(result);
         }
