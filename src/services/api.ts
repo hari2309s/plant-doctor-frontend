@@ -4,8 +4,7 @@ import {
   PlantInfoResponse,
 } from "@/types/api";
 
-const API_BASE_URL = process.env.PLANT_DOCTER_API_BASE_URL || "https://plant-doctor.deno.dev/";
-// const API_BASE_URL = "http://localhost:8000";
+const API_BASE_URL = process.env.PLANT_DOCTER_API_BASE_URL || "https://plant-doctor-3vxzmj33m9y8.deno.dev";
 
 export const uploadImage = async (
   file: File,
