@@ -4,11 +4,11 @@ const path = require('path');
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["plant-doctor.deno.dev"],
+    domains: ["plant-doctor-3vxzmj33m9y8.deno.dev"],
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "plant-doctor.deno.dev",
+        hostname: "plant-doctor-3vxzmj33m9y8.deno.dev",
         port: "",
         pathname: "/**",
       },
