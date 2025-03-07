@@ -4,11 +4,11 @@ const path = require('path');
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["plant-doctor-3vxzmj33m9y8.deno.dev"],
+    domains: ["plant-doctor-2yvmhj720j4j.deno.dev"],
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "plant-doctor-3vxzmj33m9y8.deno.dev",
+        hostname: "plant-doctor-2yvmhj720j4j.deno.dev",
         port: "",
         pathname: "/**",
       },
@@ -18,7 +18,7 @@ const nextConfig = {
   output: 'export', // Ensures Next.js generates a static build
   env: {
     PLANT_DOCTER_LOCAL_API_BASE_URL: "http://localhost:8000",
-    PLANT_DOCTER_API_BASE_URL: "https://plant-doctor-3vxzmj33m9y8.deno.dev"
+    PLANT_DOCTER_API_BASE_URL: "https://plant-doctor-2yvmhj720j4j.deno.dev"
   },
   webpack(config) {
     // Adding alias for '@' to point to 'src' directory
