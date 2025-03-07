@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { uploadImage } from "@/services/api";
+import { uploadImageAndPredict } from "@/services/api";
 import { DiagnosisResponse } from "@/types/api";
 
 export const useDiagnose = () => {
@@ -12,7 +12,7 @@ export const useDiagnose = () => {
       setIsLoading(true);
       setError(null);
 
-      const response = await uploadImage(file, plantName);
+      const response = await uploadImageAndPredict(file, plantName);
       setResult(response);
       return response;
     } catch (err) {
