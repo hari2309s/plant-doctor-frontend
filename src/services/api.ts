@@ -5,7 +5,7 @@ import {
 } from "@/types/api";
 import { createClient } from '@supabase/supabase-js';
 
-const API_BASE_URL = process.env.PLANT_DOCTER_API_BASE_URL || "https://plant-doctor-6x58vzmwyzcw.deno.dev";
+const API_BASE_URL = process.env.PLANT_DOCTER_API_BASE_URL || "https://plant-doctor-k6kjgzs4fmt1.deno.dev";
 //const API_BASE_URL = "http://localhost:8000";
 const PLANT_DOCTER_SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || "https://tztqrwfrxgdnghfvdluj.supabase.co";
 const PLANT_DOCTER_SUPABASE_SERVICE_ROLE_KEY = process.env.NEXT_PUBLIC_SUPABASE_SERVICE_ROLE_KEY || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR6dHFyd2ZyeGdkbmdoZnZkbHVqIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc0MTI3MDM4MSwiZXhwIjoyMDU2ODQ2MzgxfQ.p8JNmOc72V437eqbsVp5WGanll3PfvRXBEZQR2cwvBw";
@@ -46,8 +46,8 @@ export const uploadImageAndPredict = async (
       plant_name: plantName,
       image_url: signedUrl,
     }),
-    mode: "cors",
-    credentials: "omit",
+    mode: "cors" as RequestMode,
+    credentials: "omit" as RequestCredentials,
   });
 
   if (!response.ok) throw new Error("Failed to analyze the image ");
