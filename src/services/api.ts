@@ -5,7 +5,7 @@ import {
 } from "@/types/api";
 import { createClient } from '@supabase/supabase-js';
 
-const API_BASE_URL = process.env.PLANT_DOCTER_API_BASE_URL || "https://plant-doctor-rcwn15g1bkza.deno.dev";
+const API_BASE_URL = process.env.PLANT_DOCTER_API_BASE_URL || "https://plant-doctor-c413cba7v5q8.deno.dev";
 //const API_BASE_URL = "http://localhost:8000";
 const PLANT_DOCTER_SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || "https://tztqrwfrxgdnghfvdluj.supabase.co";
 const PLANT_DOCTER_SUPABASE_SERVICE_ROLE_KEY = process.env.NEXT_PUBLIC_SUPABASE_SERVICE_ROLE_KEY || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR6dHFyd2ZyeGdkbmdoZnZkbHVqIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc0MTI3MDM4MSwiZXhwIjoyMDU2ODQ2MzgxfQ.p8JNmOc72V437eqbsVp5WGanll3PfvRXBEZQR2cwvBw";
