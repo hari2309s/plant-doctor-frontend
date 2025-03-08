@@ -1,13 +1,16 @@
 'use client'
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { HiMenu, HiX } from 'react-icons/hi';
 import Image from 'next/image';
+import { useStorageBucket } from '@/hooks/use-storage-bucket';
 
 export const Navbar: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const [pestIconUrl, setPestIconUrl] = useState("");
+    const { getIconUrl } = useStorageBucket();
 
     const links = [
         { href: '/', label: 'Home' },
@@ -15,6 +18,13 @@ export const Navbar: React.FC = () => {
         { href: '/history', label: 'History' },
         { href: '/about', label: 'About' },
     ];
+
+    useEffect(() => {
+        (async function () {
+            const pestUrl = await getIconUrl("pest.png");
+            setPestIconUrl(pestUrl)
+        })()
+    }, [getIconUrl])
 
     return (
         <nav className="bg-white shadow-md">
@@ -24,7 +34,7 @@ export const Navbar: React.FC = () => {
                         <div className="flex-shrink-0 flex items-center">
                             <Link href="/" className="text-xl font-bold text-primary-600 flex items-center">
                                 <div className="flex items-center gap-x-2">
-                                    <Image src="/icons/pest.png" alt="Icon" width={30} height={30} />
+                                    {pestIconUrl && <Image src={pestIconUrl} alt="Icon" width={30} height={30} unoptimized={true} />}
                                     Plant Doctor
                                 </div>
                             </Link>

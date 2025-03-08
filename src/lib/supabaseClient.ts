@@ -1,0 +1,7 @@
+import { createClient } from '@supabase/supabase-js'
+
+const PLANT_DOCTER_SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || "https://tztqrwfrxgdnghfvdluj.supabase.co";
+const PLANT_DOCTER_SUPABASE_SERVICE_ROLE_KEY = process.env.NEXT_PUBLIC_SUPABASE_SERVICE_ROLE_KEY || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR6dHFyd2ZyeGdkbmdoZnZkbHVqIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc0MTI3MDM4MSwiZXhwIjoyMDU2ODQ2MzgxfQ.p8JNmOc72V437eqbsVp5WGanll3PfvRXBEZQR2cwvBw";
+const supabaseClient = createClient(PLANT_DOCTER_SUPABASE_URL, PLANT_DOCTER_SUPABASE_SERVICE_ROLE_KEY);
+
+export default supabaseClient
