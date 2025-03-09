@@ -19,7 +19,7 @@ export default function HistoryPage() {
                 const response = await getDiagnosisHistory();
                 setHistory(response?.history?.map(item => ({
                     ...item,
-                    image_url: `${process.env.PLANT_DOCTER_API_BASE_URL}${item.image_url}`
+                    image_url: `${item.image_url.substring(1, item.image_url.length)}`
                 })));
             } catch (err) {
                 setError('Failed to load diagnosis history. Please try again later.');
