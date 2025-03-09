@@ -4,16 +4,16 @@ import { Card } from '@/components/ui/card';
 import { PlantDiagnosis } from '@/types/api';
 
 interface DiagnosisResultProps {
-    diagnosis: PlantDiagnosis[];
-    imageUrl?: string;
+    predictions: PlantDiagnosis[];
+    imageUrl: string;
 }
 
-export const DiagnosisResult: React.FC<DiagnosisResultProps> = ({ diagnosis, imageUrl }) => {
-    if (!diagnosis || diagnosis.length === 0) {
+export const DiagnosisResult: React.FC<DiagnosisResultProps> = ({ imageUrl, predictions }) => {
+    if (!predictions || predictions.length === 0) {
         return null;
     }
 
-    const mainDiagnosis = diagnosis[0]; // Assuming the first diagnosis is the most likely
+    const mainDiagnosis = predictions[0];
 
     const container = {
         hidden: { opacity: 0 },
@@ -53,22 +53,22 @@ export const DiagnosisResult: React.FC<DiagnosisResultProps> = ({ diagnosis, ima
                 <motion.div variants={item}>
                     <Card className="p-6">
                         <h3 className="text-xl font-semibold text-primary-700">
-                            {mainDiagnosis.disease_name}
+                            {mainDiagnosis.disease}
                         </h3>
                         <div className="mt-2 mb-4">
                             <div className="w-full bg-gray-200 rounded-full h-2.5">
                                 <div
                                     className="bg-primary-600 h-2.5 rounded-full"
-                                    style={{ width: `${mainDiagnosis.confidence}%` }}
+                                    style={{ width: `${mainDiagnosis.confidence}` }}
                                 ></div>
                             </div>
                             <p className="text-sm text-gray-600 mt-1">
-                                Confidence: {mainDiagnosis.confidence.toFixed(1)}%
+                                Confidence: {mainDiagnosis.confidence}
                             </p>
                         </div>
                         <p className="text-gray-700 mb-4">{mainDiagnosis.description}</p>
 
-                        <div className="mt-4 space-y-4">
+                        {/* <div className="mt-4 space-y-4">
                             <div>
                                 <h4 className="font-medium text-primary-800">Treatment</h4>
                                 <p className="text-gray-700 mt-1">{mainDiagnosis.treatment}</p>
@@ -78,27 +78,27 @@ export const DiagnosisResult: React.FC<DiagnosisResultProps> = ({ diagnosis, ima
                                 <h4 className="font-medium text-primary-800">Prevention</h4>
                                 <p className="text-gray-700 mt-1">{mainDiagnosis.prevention}</p>
                             </div>
-                        </div>
+                        </div> */}
                     </Card>
                 </motion.div>
             </div>
 
-            {diagnosis.length > 1 && (
+            {predictions.length > 1 && (
                 <motion.div variants={item} className="mt-8">
                     <h3 className="text-xl font-semibold mb-4">Other Possible Conditions</h3>
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-                        {diagnosis.slice(1).map((item, index) => (
+                        {predictions.slice(1).map((item, index) => (
                             <Card key={index} className="p-4">
-                                <h4 className="font-medium text-primary-700">{item.disease_name}</h4>
+                                <h4 className="font-medium text-primary-700">{item.disease}</h4>
                                 <div className="mt-2 mb-2">
                                     <div className="w-full bg-gray-200 rounded-full h-2">
                                         <div
                                             className="bg-secondary-500 h-2 rounded-full"
-                                            style={{ width: `${item.confidence}%` }}
+                                            style={{ width: `${item.confidence}` }}
                                         ></div>
                                     </div>
                                     <p className="text-xs text-gray-600 mt-1">
-                                        Confidence: {item.confidence.toFixed(1)}%
+                                        Confidence: {item.confidence}
                                     </p>
                                 </div>
                                 <p className="text-sm text-gray-700 line-clamp-3">{item.description}</p>

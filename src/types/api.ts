@@ -1,18 +1,21 @@
 export interface PlantDiagnosis {
-  disease_name: string;
+  disease: string;
   confidence: number;
   description: string;
-  treatment: string;
-  prevention: string;
 }
 
 export interface DiagnosisResponse {
   success: boolean;
-  message: string;
-  diagnosis: PlantDiagnosis[];
+  model: string;
+  plant_name: string;
+  disease_name: string;
+  predictions: PlantDiagnosis[];
   image_url?: string;
+  created_at: string;
   timestamp: string;
   id: string;
+  additional_info?: Record<string, unknown>;
+  treatment: string;
 }
 
 export interface DiagnosisResult {
