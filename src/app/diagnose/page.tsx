@@ -126,8 +126,8 @@ export default function DiagnosePage() {
                     transition={{ duration: 0.5 }}
                 >
                     <DiagnosisResult
-                        diagnosis={diagnosisResult.diagnosis}
-                        imageUrl={diagnosisResult.image_url}
+                        imageUrl={diagnosisResult.image_url!}
+                        predictions={diagnosisResult.predictions}
                     />
 
                     <div className="text-center mt-12">
