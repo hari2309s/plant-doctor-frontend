@@ -6,11 +6,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { HiMenu, HiX } from 'react-icons/hi';
 import Image from 'next/image';
 import { useStorageBucket } from '@/hooks/use-storage-bucket';
+import { usePathname } from 'next/navigation';
 
 export const Navbar: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [pestIconUrl, setPestIconUrl] = useState("");
     const { getIconUrl } = useStorageBucket();
+    const pathname = usePathname();
 
     const links = [
         { href: '/', label: 'Home' },
@@ -25,6 +27,12 @@ export const Navbar: React.FC = () => {
             setPestIconUrl(pestUrl)
         })()
     }, [getIconUrl])
+
+    const isActiveLink = (href: string) => {
+        if (href === '/' && pathname === '/') return true;
+        if (href !== '/' && pathname?.startsWith(href)) return true;
+        return false;
+    };
 
     return (
         <nav className="bg-white shadow-md">
@@ -44,7 +52,10 @@ export const Navbar: React.FC = () => {
                                 <Link
                                     key={link.href}
                                     href={link.href}
-                                    className="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-primary-300"
+                                    className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${isActiveLink(link.href)
+                                        ? 'border-primary-500 text-primary-600 font-semibold'
+                                        : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-primary-300'
+                                        }`}
                                 >
                                     {link.label}
                                 </Link>
@@ -77,7 +88,10 @@ export const Navbar: React.FC = () => {
                                 <Link
                                     key={link.href}
                                     href={link.href}
-                                    className="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-primary-300 hover:text-gray-800"
+                                    className={`block pl-3 pr-4 py-2 border-l-4 text-base font-medium ${isActiveLink(link.href)
+                                        ? 'border-primary-500 text-primary-600 bg-primary-50 font-semibold'
+                                        : 'border-transparent text-gray-600 hover:bg-gray-50 hover:border-primary-300 hover:text-gray-800'
+                                        }`}
                                     onClick={() => setIsOpen(false)}
                                 >
                                     {link.label}
