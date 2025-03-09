@@ -4,14 +4,14 @@ import {
   HistoryResponse,
   PlantInfoResponse,
 } from "@/types/api";
-const API_BASE_URL = process.env.PLANT_DOCTER_API_BASE_URL || "https://plant-doctor-7t9f2f0s9vh1.deno.dev";
-//const API_BASE_URL = "http://localhost:8000";
+
+const API_BASE_URL = process.env.PLANT_DOCTER_API_BASE_URL || "https://plant-doctor-bchxrqzr217v.deno.dev";
 
 export const uploadImageAndPredict = async (
   file: File,
   plantName: string
 ): Promise<DiagnosisResponse> => {
-  // Create a unique file name for the image (optional)
+  // Create a unique file name for the image
   const uniqueFileName = `${plantName.replace(/\s+/g, "_")}_${Date.now()}_${file.name}`;
   
   // Upload the image to Supabase Storage
