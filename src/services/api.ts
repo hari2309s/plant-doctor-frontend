@@ -5,8 +5,14 @@ import {
   PlantInfoResponse,
 } from "@/types/api";
 
-const API_BASE_URL = process.env.PLANT_DOCTER_API_BASE_URL || "https://plant-doctor-xfgcdy9by14y.deno.dev";
+const API_BASE_URL = process.env.PLANT_DOCTER_API_BASE_URL || "https://plant-doctor-fr5wn1f0djdm.deno.dev";
 
+/**
+ * Uploads an image and predicts plant diseases
+ * @param file The image file to upload
+ * @param plantName The name of the plant
+ * @returns Diagnosis response
+ */
 export const uploadImageAndPredict = async (
   file: File,
   plantName: string
@@ -48,7 +54,10 @@ export const uploadImageAndPredict = async (
     credentials: "omit" as RequestCredentials,
   });
 
-  if (!response.ok) throw new Error("Failed to analyze the image ");
+  if (!response.ok) {
+    const errorText = await response.text();
+    throw new Error(`${JSON.parse(errorText).error}`);
+  }
 
   return response.json();
 };
