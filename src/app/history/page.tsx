@@ -6,7 +6,6 @@ import { Card } from '@/components/ui/card';
 import { HistoryCard } from '@/components/features/history-card';
 import { getDiagnosisHistory } from '@/services/api';
 import { DiagnosisHistory } from '@/types/api';
-import Link from 'next/link';
 
 export default function HistoryPage() {
     const [history, setHistory] = useState<DiagnosisHistory[]>([]);
@@ -87,12 +86,12 @@ export default function HistoryPage() {
                         <p className="text-gray-600 mb-6">
                             You haven't diagnosed any plants yet. Upload a plant image to get started.
                         </p>
-                        <Link
-                            href="/diagnose"
+                        <a
+                            href="/plant-doctor-frontend/diagnose"
                             className="inline-block bg-primary-600 text-white px-4 py-2 rounded-md hover:bg-primary-700 transition-colors"
                         >
                             Diagnose a Plant
-                        </Link>
+                        </a>
                     </Card>
                 </motion.div>
             ) : (
