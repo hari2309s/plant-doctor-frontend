@@ -33,6 +33,29 @@ module.exports = {
           900: "#78350f",
         },
       },
+      fontFamily: {
+        sans: [
+          '-apple-system',
+          'BlinkMacSystemFont', 
+          'Segoe UI', 
+          'Roboto', 
+          'Helvetica Neue', 
+          'Arial', 
+          'sans-serif',
+          'Apple Color Emoji', 
+          'Segoe UI Emoji', 
+          'Segoe UI Symbol'
+        ],
+        mono: [
+          'SFMono-Regular', 
+          'Menlo', 
+          'Monaco', 
+          'Consolas', 
+          'Liberation Mono', 
+          'Courier New', 
+          'monospace'
+        ],
+      },
       keyframes: {
         fadeIn: {
           "0%": { opacity: "0" },
