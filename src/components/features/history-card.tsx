@@ -30,7 +30,7 @@ export const HistoryCard: React.FC<HistoryCardProps> = ({ item }) => {
     };
 
     return (
-        <Card className="h-full overflow-hidden">
+        <Card className="h-full overflow-hidden border border-gray-200 rounded-lg shadow-none">
             <div className="flex flex-col h-full">
                 <Link href={`/diagnose/${item.id}`} className="block">
                     <div className="h-48 overflow-hidden">
@@ -59,7 +59,7 @@ export const HistoryCard: React.FC<HistoryCardProps> = ({ item }) => {
 
                     <div className="mb-4">
                         <motion.span
-                            className="inline-block bg-primary-100 text-primary-800 text-xs px-2 py-1 rounded-full"
+                            className="inline-block bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full"
                             initial={{ opacity: 0, x: -10 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.3 }}
@@ -74,7 +74,7 @@ export const HistoryCard: React.FC<HistoryCardProps> = ({ item }) => {
                             transition={{ duration: 0.5, delay: 0.2 }}
                         >
                             <motion.div
-                                className="bg-primary-600 h-1.5 rounded-full"
+                                className="bg-green-600 h-1.5 rounded-full"
                                 initial={{ width: '0%' }}
                                 animate={{ width: `${mainDiagnosis.confidence}%` }}
                                 transition={{ duration: 0.8, delay: 0.4 }}
@@ -93,7 +93,7 @@ export const HistoryCard: React.FC<HistoryCardProps> = ({ item }) => {
                         transition={{ delay: 0.6 }}
                     >
                         <motion.div
-                            className="text-sm font-medium text-primary-600 flex items-center cursor-pointer"
+                            className="text-sm font-medium text-green-600 flex items-center cursor-pointer"
                             whileHover={{ scale: 1.01 }}
                             onClick={(e) => {
                                 e.preventDefault();
@@ -117,7 +117,7 @@ export const HistoryCard: React.FC<HistoryCardProps> = ({ item }) => {
                                     animate={{ height: 'auto', opacity: 1 }}
                                     exit={{ height: 0, opacity: 0 }}
                                     transition={{ duration: 0.3 }}
-                                    className="overflow-hidden"
+                                    className="overflow-hidden w-full"
                                 >
                                     {item.predictions.map((prediction, index) => (
                                         <motion.div
@@ -132,7 +132,7 @@ export const HistoryCard: React.FC<HistoryCardProps> = ({ item }) => {
                                                 onClick={toggleAccordion(index)}
                                             >
                                                 <div className="flex items-center">
-                                                    <span className={`h-2.5 w-2.5 rounded-full mr-2 ${index === 0 ? 'bg-primary-500' :
+                                                    <span className={`h-2.5 w-2.5 rounded-full mr-2 ${index === 0 ? 'bg-green-500' :
                                                         prediction.confidence > 50 ? 'bg-orange-500' : 'bg-gray-400'
                                                         }`}></span>
                                                     <span className="font-medium text-gray-800">{prediction.disease}</span>
