@@ -13,6 +13,7 @@ export default function DiagnosePage() {
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
     const [plantName, setPlantName] = useState<string>('');
     const [diagnosisResult, setDiagnosisResult] = useState<DiagnosisResponse | null>(null);
+    const [responseStartTime, setResponseStartTime] = useState<number | null>(null);
     const { diagnose, isLoading, error } = useDiagnose();
 
     const handleImageSelect = (file: File) => {
@@ -26,10 +27,14 @@ export default function DiagnosePage() {
             return;
         }
 
+        // Start the timer
+        setResponseStartTime(Date.now());
+
         const result = await diagnose(selectedFile, plantName);
 
         if (result) {
             setDiagnosisResult(result);
+            setResponseStartTime(null); // Reset timer when done
         }
     };
 
@@ -37,6 +42,7 @@ export default function DiagnosePage() {
         setSelectedFile(null);
         setPlantName('');
         setDiagnosisResult(null);
+        setResponseStartTime(null);
     };
 
     const fadeIn = {
@@ -100,6 +106,7 @@ export default function DiagnosePage() {
                                         <ImageUpload
                                             onImageSelect={handleImageSelect}
                                             isLoading={isLoading}
+                                            responseStartTime={responseStartTime}
                                         />
                                     </div>
 
