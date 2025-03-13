@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { motion } from 'framer-motion';
-import { HiUpload, HiX, HiClock } from 'react-icons/hi';
+import { HiUpload, HiX, HiOutlineClock } from 'react-icons/hi';
 import { Button } from '@/components/ui/button';
 
 interface ImageUploadProps {
@@ -133,7 +133,7 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
                                 <motion.div
                                     animate={spinAnimation}
                                 >
-                                    <HiClock className="h-4 w-4 text-white" />
+                                    <HiOutlineClock className="h-4 w-4 text-white" />
                                 </motion.div>
                                 <span className="text-white text-sm font-mono">
                                     {elapsedTime.toFixed(1)}s
