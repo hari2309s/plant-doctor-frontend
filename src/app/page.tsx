@@ -90,7 +90,7 @@ export default function Home() {
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.5, delay: index * 0.1 }}
                             >
-                                <Card className="p-6 h-full flex flex-col border border-gray-200 rounded-lg shadow-none">
+                                <Card className="p-6 h-full flex flex-col border border-gray-200 rounded-lg shadow-sm bg-green-50 hover:bg-green-100 transition-colors">
                                     <div className="mb-4 text-green-600">
                                         {feature.icon}
                                     </div>
@@ -145,7 +145,7 @@ export default function Home() {
                                 transition={{ duration: 0.5, delay: index * 0.1 }}
                                 className="relative"
                             >
-                                <Card className="p-6 h-full border border-gray-200 rounded-lg shadow-none">
+                                <Card className="p-6 h-full border border-gray-200 rounded-lg shadow-sm bg-green-50 hover:bg-green-100 transition-colors">
                                     <div className="absolute -top-5 left-6 bg-green-600 text-white rounded-full w-10 h-10 flex items-center justify-center font-bold">
                                         {item.step}
                                     </div>
@@ -161,7 +161,7 @@ export default function Home() {
             </section>
 
             {/* CTA Section */}
-            <section className="py-12 bg-green-600 text-white">
+            <section className="py-12 bg-white text-gray-800 border-t border-gray-200">
                 <div className="page-container max-w-5xl mx-auto px-6">
                     <motion.div
                         initial={{ opacity: 0 }}
@@ -171,13 +171,13 @@ export default function Home() {
                         className="text-center"
                     >
                         <h2 className="text-3xl font-bold mb-4">Ready to diagnose your plants?</h2>
-                        <p className="max-w-2xl mx-auto mb-8 text-green-100">
+                        <p className="max-w-2xl mx-auto mb-8 text-gray-600">
                             Start using Plant Doctor today and keep your garden healthy and thriving.
                         </p>
                         <Link href="/diagnose">
                             <Button
                                 size="lg"
-                                className="font-semibold bg-white text-green-700 hover:bg-gray-100"
+                                className="font-semibold bg-green-600 hover:bg-green-700 text-white"
                             >
                                 Get Started Now
                             </Button>

@@ -32,7 +32,7 @@ export default function AboutPage() {
                         animate="visible"
                         className="max-w-4xl mx-auto mt-12"
                     >
-                        <Card className="p-8 mb-12 border border-gray-200 rounded-lg shadow-none">
+                        <Card className="p-8 mb-12 bg-green-50 rounded-lg shadow-none">
                             <h2 className="text-2xl font-bold mb-4">Our Mission</h2>
                             <p className="text-gray-700 mb-6">
                                 Plant Doctor is dedicated to making expert plant disease diagnosis accessible to everyone.
@@ -77,7 +77,7 @@ export default function AboutPage() {
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 0.5, delay: index * 0.1 }}
                                 >
-                                    <Card className="p-6 h-full border border-gray-200 rounded-lg shadow-none">
+                                    <Card className="p-6 h-full bg-green-50 rounded-lg shadow-none">
                                         <div className="flex items-start">
                                             <div className="mr-4">
                                                 {feature.icon}
@@ -93,7 +93,7 @@ export default function AboutPage() {
                         </div>
 
                         <h2 className="text-2xl font-bold mb-6">How It Works</h2>
-                        <Card className="p-8 mb-12 border border-gray-200 rounded-lg shadow-none">
+                        <Card className="p-8 mb-12 bg-green-50 rounded-lg shadow-none">
                             <ol className="space-y-6">
                                 <li className="flex">
                                     <span className="bg-green-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-4 flex-shrink-0">1</span>
