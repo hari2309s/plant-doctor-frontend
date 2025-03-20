@@ -107,6 +107,11 @@ export default function DiagnosePage() {
                                             onImageSelect={handleImageSelect}
                                             isLoading={isLoading}
                                             responseStartTime={responseStartTime}
+                                            onReset={() => {
+                                                setSelectedFile(null);
+                                                setDiagnosisResult(null);
+                                                setResponseStartTime(null);
+                                            }}
                                         />
                                     </div>
 

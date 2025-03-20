@@ -8,12 +8,14 @@ interface ImageUploadProps {
     onImageSelect: (file: File) => void;
     isLoading?: boolean;
     responseStartTime?: number | null;
+    onReset: () => void;
 }
 
 export const ImageUpload: React.FC<ImageUploadProps> = ({
     onImageSelect,
     isLoading = false,
-    responseStartTime = null
+    responseStartTime = null,
+    onReset
 }) => {
     const [preview, setPreview] = useState<string | null>(null);
     const [file, setFile] = useState<File | null>(null);
@@ -63,6 +65,7 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
     const handleClear = () => {
         setPreview(null);
         setFile(null);
+        onReset();
     };
 
     // Spinning animation for the clock icon

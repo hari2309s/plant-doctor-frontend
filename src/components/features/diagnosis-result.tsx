@@ -67,18 +67,6 @@ export const DiagnosisResult: React.FC<DiagnosisResultProps> = ({ imageUrl, pred
                             </p>
                         </div>
                         <p className="text-gray-700 mb-4">{mainDiagnosis.description}</p>
-
-                        {/* <div className="mt-4 space-y-4">
-                            <div>
-                                <h4 className="font-medium text-primary-800">Treatment</h4>
-                                <p className="text-gray-700 mt-1">{mainDiagnosis.treatment}</p>
-                            </div>
-
-                            <div>
-                                <h4 className="font-medium text-primary-800">Prevention</h4>
-                                <p className="text-gray-700 mt-1">{mainDiagnosis.prevention}</p>
-                            </div>
-                        </div> */}
                     </Card>
                 </motion.div>
             </div>

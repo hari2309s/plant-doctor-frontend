@@ -131,15 +131,17 @@ export const HistoryCard: React.FC<HistoryCardProps> = ({ item }) => {
                                                 className="flex justify-between items-center cursor-pointer"
                                                 onClick={toggleAccordion(index)}
                                             >
-                                                <div className="flex items-center">
-                                                    <span className={`h-2.5 w-2.5 rounded-full mr-2 ${index === 0 ? 'bg-green-500' :
+                                                <div className="flex items-center max-w-[70%]">
+                                                    <span className={`flex-shrink-0 h-2.5 w-2.5 rounded-full mr-2 ${index === 0 ? 'bg-green-500' :
                                                         prediction.confidence > 50 ? 'bg-orange-500' : 'bg-gray-400'
                                                         }`}></span>
-                                                    <span className="font-medium text-gray-800">{prediction.disease}</span>
+                                                    <span className="font-medium text-gray-800 truncate">
+                                                        {prediction.disease}
+                                                    </span>
                                                 </div>
-                                                <div className="flex items-center">
-                                                    <span className="text-xs text-gray-500 mr-2">
-                                                        {prediction.confidence}
+                                                <div className="flex items-center flex-shrink-0">
+                                                    <span className="text-xs text-gray-500 mr-2 whitespace-nowrap">
+                                                        {prediction.confidence}%
                                                     </span>
                                                     <motion.div
                                                         animate={{ rotate: expandedIndex === index ? 180 : 0 }}
