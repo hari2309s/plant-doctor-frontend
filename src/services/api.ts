@@ -5,7 +5,7 @@ import {
   PlantInfoResponse,
 } from "@/types/api";
 
-const API_BASE_URL = process.env.PLANT_DOCTER_API_BASE_URL || "https://plant-doctor-75a317z0jf5v.deno.dev";
+const API_BASE_URL = process.env.PLANT_DOCTER_API_BASE_URL || "https://plant-doctor-56c4d9ysxarf.deno.dev";
 
 /**
  * Uploads an image and predicts plant diseases
