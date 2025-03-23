@@ -18,7 +18,7 @@ const nextConfig = {
   output: 'export', // Ensures Next.js generates a static build
   env: {
     PLANT_DOCTER_LOCAL_API_BASE_URL: "http://localhost:8000",
-    PLANT_DOCTER_API_BASE_URL: "https://plant-doctor-56c4d9ysxarf.deno.dev",
+    PLANT_DOCTER_API_BASE_URL: "https://plant-doctor-7w51wbptpf8m.deno.dev",
     PLANT_DOCTOR_SUPABASE_STORAGE_BUCKET_URL: "https://tztqrwfrxgdnghfvdluj.supabase.co/storage/v1/object/sign/plant-doctor-plants-images"
   },
   webpack(config) {
